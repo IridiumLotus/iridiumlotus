@@ -24,23 +24,36 @@ document.addEventListener('DOMContentLoaded', function() {
 
     function showLotus() {
         document.querySelector('.lotus-container').classList.remove('hidden');
-        document.getElementById('lottie-lotus').addEventListener('click', playAnimation);
-        document.querySelectorAll('.petal').forEach(petal => {
-            petal.addEventListener('click', onPetalClick);
-            petal.addEventListener('mouseover', onPetalHover);
-            petal.addEventListener('mouseout', onPetalBlur);
-        });
+        document.getElementById('static-lotus').addEventListener('click', playAnimation);
     }
 
     function playAnimation() {
+        const staticLotus = document.getElementById('static-lotus');
+        staticLotus.classList.add('hidden');
+        const lottieContainer = document.getElementById('lottie-lotus');
+        lottieContainer.classList.remove('hidden');
+        
         const animation = lottie.loadAnimation({
-            container: document.getElementById('lottie-lotus'),
+            container: lottieContainer,
             renderer: 'svg',
             loop: false,
             autoplay: true,
             path: 'lotusAnimation.json'
         });
-        animation.play();
+
+        animation.addEventListener('DOMLoaded', () => {
+            // This is where you can add interactivity to the petals if needed
+        });
+
+        animation.addEventListener('complete', () => {
+            // Ensure petals are clickable after animation completes
+            const petals = document.querySelectorAll('.petal');
+            petals.forEach(petal => {
+                petal.addEventListener('click', onPetalClick);
+                petal.addEventListener('mouseover', onPetalHover);
+                petal.addEventListener('mouseout', onPetalBlur);
+            });
+        });
     }
 
     function onPetalClick(event) {
