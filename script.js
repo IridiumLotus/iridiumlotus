@@ -32,7 +32,7 @@ document.addEventListener('DOMContentLoaded', function() {
         staticLotus.classList.add('hidden');
         const lottieContainer = document.getElementById('lottie-lotus');
         lottieContainer.classList.remove('hidden');
-        
+
         const animation = lottie.loadAnimation({
             container: lottieContainer,
             renderer: 'svg',
@@ -42,11 +42,11 @@ document.addEventListener('DOMContentLoaded', function() {
         });
 
         animation.addEventListener('DOMLoaded', () => {
-            // This is where you can add interactivity to the petals if needed
+            console.log("Lottie animation loaded");
         });
 
         animation.addEventListener('complete', () => {
-            // Ensure petals are clickable after animation completes
+            console.log("Lottie animation complete");
             const petals = document.querySelectorAll('.petal');
             petals.forEach(petal => {
                 petal.addEventListener('click', onPetalClick);
