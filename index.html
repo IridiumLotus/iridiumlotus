@@ -102,11 +102,12 @@
                     renderer: 'svg',
                     loop: false,
                     autoplay: false,
-                    path: 'lotusAnimation.json'
+                    path: 'lotusAnimation.json?' + new Date().getTime() // Add cache buster
                 });
 
                 // Play Lottie animation when clicked
-                lottieElement.addEventListener('click', () => {
+                lotusImg.addEventListener('click', () => {
+                    lottieContainer.style.display = 'flex'; // Ensure lottieContainer is visible
                     animation.goToAndStop(0, true);
                     animation.play();
                 });
