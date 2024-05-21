@@ -22,28 +22,26 @@
             font-size: 24px;
             white-space: nowrap;
             position: absolute;
-            animation: blink 1s step-end infinite;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            opacity: 0;
+            animation: fadeInText 2s forwards;
         }
-        @keyframes blink {
-            from, to { opacity: 1 }
-            50% { opacity: 0 }
-        }
-        #text.moving {
-            animation: moveDown 2s forwards;
-        }
-        @keyframes moveDown {
-            to { top: calc(100vh - 40px); }
-        }
-        #lottie {
-            width: 300px;
-            height: 300px;
-            cursor: pointer;
+        @keyframes fadeInText {
+            from { opacity: 0; }
+            to { opacity: 1; }
         }
         #lottieContainer {
             display: none;
             justify-content: center;
             align-items: center;
             position: absolute;
+        }
+        #lottie {
+            width: 300px;
+            height: 300px;
+            cursor: pointer;
         }
     </style>
 </head>
@@ -57,50 +55,33 @@
             const textElement = document.getElementById('text');
             const lottieContainer = document.getElementById('lottieContainer');
             const lottieElement = document.getElementById('lottie');
-            
-            // Function to animate typing text
-            function typeText(text, element, callback) {
-                let index = 0;
-                function type() {
-                    if (index < text.length) {
-                        element.textContent += text.charAt(index);
-                        index++;
-                        setTimeout(type, 100);
-                    } else {
-                        callback();
-                    }
-                }
-                type();
-            }
 
-            // Animate typing text
-            textElement.textContent = ''; // Clear initial text
-            typeText('./iridium', textElement, () => {
-                textElement.classList.add('moving');
-                setTimeout(() => {
-                    textElement.classList.remove('moving');
-                    textElement.style.top = 'calc(100vh - 40px)'; // Fix text position at bottom
+            setTimeout(() => {
+                textElement.style.opacity = '0';
+                textElement.style.transition = 'opacity 2s';
+                textElement.addEventListener('transitionend', () => {
+                    textElement.style.display = 'none';
                     lottieContainer.style.display = 'flex';
-                }, 2000); // Duration should match the moveDown animation duration
-
-                // Load and setup Lottie animation
-                const animation = lottie.loadAnimation({
-                    container: lottieElement,
-                    renderer: 'svg',
-                    loop: false,
-                    autoplay: false,
-                    path: 'lotusAnimation.json'
                 });
+            }, 2000);
 
-                lottieElement.addEventListener('click', () => {
-                    animation.goToAndStop(0, true);
-                    animation.play();
-                });
+            // Load and setup Lottie animation
+            const animation = lottie.loadAnimation({
+                container: lottieElement,
+                renderer: 'svg',
+                loop: false,
+                autoplay: false,
+                path: 'lotusAnimation.json'
+            });
 
-                animation.addEventListener('complete', () => {
-                    // Handle petal interactivity here
-                    console.log('Animation complete');
-                });
+            lottieElement.addEventListener('click', () => {
+                animation.goToAndStop(0, true);
+                animation.play();
+            });
+
+            animation.addEventListener('complete', () => {
+                // Handle petal interactivity here
+                console.log('Animation complete');
             });
         });
     </script>
