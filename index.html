@@ -52,7 +52,7 @@
         }
         #lotusImg {
             position: absolute;
-            top: calc(50vh - 150px); /* Adjust position */
+            top: calc(50vh - 100px); /* Adjust position */
             left: 50%;
             transform: translate(-50%, -50%);
             opacity: 0;
@@ -60,7 +60,7 @@
             height: 200px;
             z-index: 1; /* Ensure the image doesn't interfere with click event */
             transition: opacity 1s ease-in-out; /* Apply fade-in transition */
-            cursor: pointer; /* Enable pointer cursor */
+            cursor: default; /* Disable pointer cursor initially */
         }
     </style>
 </head>
@@ -100,6 +100,10 @@
                     textElement.style.top = 'calc(100vh - 40px)';
                     textElement.addEventListener('transitionend', () => {
                         lotusImg.style.opacity = '1'; // Fade in the lotus image
+                        setTimeout(() => {
+                            lotusImg.style.cursor = 'pointer'; // Enable pointer cursor after delay
+                            lotusImg.addEventListener('click', handleLotusClick);
+                        }, 1000); // 1 second delay after the fade-in transition
                     });
                 }, 800); // Adjust the delay before moving the text to the bottom
 
@@ -112,14 +116,13 @@
                     path: 'lotusAnimation.json?' + new Date().getTime() // Add cache buster
                 });
 
-                // Play Lottie animation when clicked
-                lotusImg.addEventListener('click', () => {
+                function handleLotusClick() {
                     lotusImg.style.display = 'none'; // Hide the initial PNG
                     lottieContainer.style.display = 'flex'; // Show the Lottie container
                     lottieContainer.style.opacity = '1'; // Fade in the Lottie container
                     animation.goToAndStop(0, true);
                     animation.play();
-                });
+                }
 
                 // Handle completion of Lottie animation
                 animation.addEventListener('complete', () => {
