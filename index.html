@@ -44,6 +44,18 @@
             height: 300px;
             cursor: pointer;
         }
+        #lotusImg {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            opacity: 0;
+            animation: fadeInLotus 2s forwards;
+        }
+        @keyframes fadeInLotus {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
     </style>
 </head>
 <body>
@@ -51,11 +63,13 @@
     <div id="lottieContainer">
         <div id="lottie"></div>
     </div>
+    <img id="lotusImg" src="lotus_first_frame.png" alt="Lotus Flower">
     <script>
         document.addEventListener('DOMContentLoaded', function() {
             const textElement = document.getElementById('text');
             const lottieContainer = document.getElementById('lottieContainer');
             const lottieElement = document.getElementById('lottie');
+            const lotusImg = document.getElementById('lotusImg');
 
             // Text typing animation
             function typeText(text, element, callback) {
@@ -79,8 +93,8 @@
                     textElement.style.transition = 'top 2s';
                     textElement.style.top = 'calc(100vh - 40px)';
                     textElement.addEventListener('transitionend', () => {
-                        textElement.style.display = 'none';
-                        lottieContainer.style.display = 'flex';
+                        lotusImg.style.opacity = '1'; // Fade in the lotus image
+                        textElement.style.transition = 'none'; // Remove transition to prevent flickering
                     });
                 }, 1000); // Reduce the delay before moving the text to the bottom
 
