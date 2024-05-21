@@ -46,12 +46,14 @@
         }
         #lotusImg {
             position: absolute;
-            top: calc(50vh - 120px); /* Adjust position */
+            top: calc(50vh - 100px); /* Adjust position */
             left: 50%;
             transform: translateX(-50%);
             opacity: 0;
-            width: 240px; /* Adjust size */
+            width: 200px; /* Adjust size */
+            z-index: 1; /* Ensure the image doesn't interfere with click event */
             transition: opacity 1s ease-in-out; /* Apply fade-in transition */
+            cursor: pointer; /* Enable pointer cursor */
         }
     </style>
 </head>
@@ -92,7 +94,7 @@
                     textElement.addEventListener('transitionend', () => {
                         lotusImg.style.opacity = '1'; // Fade in the lotus image
                     });
-                }, 1000); // Reduce the delay before moving the text to the bottom
+                }, 800); // Adjust the delay before moving the text to the bottom
 
                 // Load and setup Lottie animation
                 const animation = lottie.loadAnimation({
