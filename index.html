@@ -21,7 +21,7 @@
             position: relative;
         }
         #text {
-            font-size: 6vw; /* Use relative units for responsive text size */
+            font-size: 3vw; /* Adjusted text size */
             white-space: nowrap;
             position: absolute;
             top: 50%;
@@ -42,9 +42,9 @@
             top: 50%;
             left: 50%;
             transform: translate(-50%, -50%);
-            width: 60vw; /* Use relative units for responsive sizing */
-            height: 60vw; /* Use relative units for responsive sizing */
-            transition: opacity 1s ease-in-out; /* Apply fade-in transition */
+            width: 40vw; /* Kept same size */
+            height: 40vw; /* Kept same size */
+            transition: opacity 1s ease-in-out;
         }
         #lottie {
             width: 100%;
@@ -57,34 +57,26 @@
             left: 50%;
             transform: translate(-50%, -50%);
             opacity: 0;
-            width: 40vw; /* Use relative units for responsive sizing */
-            height: 40vw; /* Use relative units for responsive sizing */
-            z-index: 1; /* Ensure the image doesn't interfere with click event */
-            transition: opacity 1s ease-in-out; /* Apply fade-in transition */
-            cursor: default; /* Disable pointer cursor initially */
+            width: 30vw; /* Kept same size */
+            height: 30vw; /* Kept same size */
+            z-index: 1;
+            transition: opacity 1s ease-in-out;
+            cursor: default;
         }
         #contact-email {
             position: absolute;
             bottom: 20px;
             right: 20px;
             opacity: 0;
-            font-size: 1.5vw; /* Adjust the size as needed */
-            transition: opacity 1s ease-in-out; /* Apply fade-in transition */
+            font-size: 1.5vw; /* Adjusted text size */
+            transition: opacity 1s ease-in-out;
         }
         @media (max-width: 768px) {
             #text {
-                font-size: 8vw; /* Increase text size for smaller screens */
-            }
-            #lottieContainer {
-                width: 70vw; /* Adjust size for smaller screens */
-                height: 70vw; /* Adjust size for smaller screens */
-            }
-            #lotusImg {
-                width: 50vw; /* Adjust size for smaller screens */
-                height: 50vw; /* Adjust size for smaller screens */
+                font-size: 5vw; /* Larger size for smaller screens */
             }
             #contact-email {
-                font-size: 3vw; /* Adjust the size for smaller screens */
+                font-size: 3vw;
             }
         }
     </style>
@@ -124,7 +116,7 @@
                 textElement.innerHTML += '<span class="blinking">.</span>';
                 setTimeout(() => {
                     textElement.style.transition = 'top 2s';
-                    textElement.style.top = 'calc(100vh - 10vh)'; // Use relative unit to prevent text from moving out of view
+                    textElement.style.top = 'calc(100vh - 10vh)';
                     textElement.addEventListener('transitionend', () => {
                         lotusImg.style.opacity = '1'; // Fade in the lotus image
                         contactEmail.style.opacity = '1'; // Fade in the contact email
