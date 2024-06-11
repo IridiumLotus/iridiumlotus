@@ -67,6 +67,17 @@ body {
     height: 300px;
 }
 
+#playPauseButton {
+    position: fixed;
+    bottom: 20px;
+    left: 20px;
+    font-size: 24px; 
+    color: #ffffff; 
+    cursor: pointer;
+    opacity: 0;
+    transition: opacity 1s; /* Fade in transition */
+}
+
 #fadeText {
     position: absolute;
     top: 10%;

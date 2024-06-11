@@ -5,6 +5,8 @@ document.addEventListener('DOMContentLoaded', function() {
     const lotusImg = document.getElementById('lotusImg');
     const contactEmail = document.getElementById('contact-email');
     const fadeText = document.getElementById('fadeText');
+    const backgroundMusic = document.getElementById('backgroundMusic'); // Get the audio element
+    const playPauseButton = document.getElementById('playPauseButton'); // Get the play/pause button
 
     // Text typing animation
     function typeText(text, element, callback) {
@@ -38,7 +40,7 @@ document.addEventListener('DOMContentLoaded', function() {
                     span.style.opacity = '1';
                 }, 100);
                 wordIndex++;
-                setTimeout(showNextWord, 300);
+                setTimeout(showNextWord, 300); // Interval between words
             }
         }
 
@@ -77,12 +79,27 @@ document.addEventListener('DOMContentLoaded', function() {
             lottieContainer.style.opacity = '1'; // Fade in the Lottie container
             animation.goToAndStop(0, true);
             animation.play();
+            backgroundMusic.play(); // Play the background music
+            setTimeout(() => {
+                playPauseButton.style.opacity = '1'; // Fade in the play/pause button
+            }, 1000); // Adjust the delay as needed
         }
 
         // Handle completion of Lottie animation
         animation.addEventListener('complete', () => {
             // Show and fade in the text word by word
-            fadeInWords('Я не могу сдержать своего презрения к вам, демонам. Вы говорите чисто, а затем взрываете больницы', fadeText);
+            fadeInWords('Убейте всех своих демонов, ибо ваша душа достойна искупления', fadeText);
         });
+    });
+
+    // Play/pause functionality
+    playPauseButton.addEventListener('click', () => {
+        if (backgroundMusic.paused) {
+            backgroundMusic.play();
+            playPauseButton.textContent = ' | | '; // Update button text to 'pause'
+        } else {
+            backgroundMusic.pause();
+            playPauseButton.textContent = ' > '; // Update button text to 'play'
+        }
     });
 });
