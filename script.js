@@ -1,82 +1,63 @@
 document.addEventListener('DOMContentLoaded', function() {
-    const terminal = document.querySelector('.terminal .command');
-    const cursor = document.querySelector('.blinking-cursor');
-    const text = './iridium';
-    let index = 0;
+    const textElement = document.getElementById('text');
+    const lottieContainer = document.getElementById('lottieContainer');
+    const lottieElement = document.getElementById('lottie');
+    const lotusImg = document.getElementById('lotusImg');
+    const contactEmail = document.getElementById('contact-email');
+    const fadeText = document.getElementById('fadeText');
 
-    function type() {
-        if (index < text.length) {
-            terminal.textContent += text.charAt(index);
-            index++;
-            setTimeout(type, 150);
-        } else {
-            cursor.classList.add('static');
-            setTimeout(moveTerminal, 500); // Add delay before moving the terminal
+    // Text typing animation
+    function typeText(text, element, callback) {
+        let index = 0;
+        function type() {
+            if (index < text.length) {
+                element.textContent += text.charAt(index);
+                index++;
+                setTimeout(type, 100);
+            } else {
+                callback();
+            }
         }
+        type();
     }
 
-    function moveTerminal() {
-        const terminalContainer = document.querySelector('.terminal-container');
-        terminalContainer.style.top = '80%';
-        terminalContainer.style.transform = 'translate(-50%, 0)';
-        setTimeout(showLotus, 1000); // Delay before showing the lotus
-    }
+    // Start typing animation
+    typeText('./iridium', textElement, () => {
+        textElement.innerHTML += '<span class="blinking">.</span>';
+        setTimeout(() => {
+            textElement.style.transition = 'top 2s';
+            textElement.style.top = 'calc(100vh - 10vh)';
+            textElement.addEventListener('transitionend', () => {
+                lotusImg.style.opacity = '1'; // Fade in the lotus image
+                contactEmail.style.opacity = '1'; // Fade in the contact email
+                setTimeout(() => {
+                    lotusImg.style.cursor = 'pointer'; // Enable pointer cursor after delay
+                    lotusImg.addEventListener('click', handleLotusClick);
+                }, 1000); // 1 second delay after the fade-in transition
+            });
+        }, 800); // Adjust the delay before moving the text to the bottom
 
-    function showLotus() {
-        document.querySelector('.lotus-container').classList.remove('hidden');
-        document.getElementById('static-lotus').addEventListener('click', playAnimation);
-    }
-
-    function playAnimation() {
-        console.log('Static lotus clicked');
-        const staticLotus = document.getElementById('static-lotus');
-        staticLotus.classList.add('hidden');
-        const lottieContainer = document.getElementById('lottie-lotus');
-        lottieContainer.classList.remove('hidden');
-
+        // Load and setup Lottie animation
         const animation = lottie.loadAnimation({
-            container: lottieContainer,
+            container: lottieElement,
             renderer: 'svg',
             loop: false,
             autoplay: false,
-            path: 'lotusAnimation.json'
+            path: 'lotusAnimation.json?' + new Date().getTime() // Add cache buster
         });
 
-        animation.addEventListener('DOMLoaded', () => {
-            console.log('Lottie animation loaded');
+        function handleLotusClick() {
+            lotusImg.style.display = 'none'; // Hide the initial PNG
+            lottieContainer.style.display = 'flex'; // Show the Lottie container
+            lottieContainer.style.opacity = '1'; // Fade in the Lottie container
+            animation.goToAndStop(0, true);
             animation.play();
-        });
+        }
 
+        // Handle completion of Lottie animation
         animation.addEventListener('complete', () => {
-            console.log('Lottie animation complete');
-            // Ensure petals are clickable after animation completes
-            const petals = document.querySelectorAll('.petal');
-            petals.forEach(petal => {
-                petal.addEventListener('click', onPetalClick);
-                petal.addEventListener('mouseover', onPetalHover);
-                petal.addEventListener('mouseout', onPetalBlur);
-            });
+            // Show and fade in the text
+            fadeText.style.opacity = '1';
         });
-
-        animation.addEventListener('error', (error) => {
-            console.error('Error loading Lottie animation:', error);
-        });
-    }
-
-    function onPetalClick(event) {
-        // Handle click event for the petal
-        console.log('Petal clicked:', event.target.id);
-    }
-
-    function onPetalHover(event) {
-        // Handle hover event for the petal
-        event.target.style.opacity = 0.7;
-    }
-
-    function onPetalBlur(event) {
-        // Handle blur event for the petal
-        event.target.style.opacity = 1;
-    }
-
-    type();
+    });
 });
