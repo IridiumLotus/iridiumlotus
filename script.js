@@ -21,6 +21,31 @@ document.addEventListener('DOMContentLoaded', function() {
         type();
     }
 
+    // Function to fade in words one by one
+    function fadeInWords(text, element) {
+        const words = text.split(' ');
+        element.innerHTML = '';
+        let wordIndex = 0;
+
+        function showNextWord() {
+            if (wordIndex < words.length) {
+                const span = document.createElement('span');
+                span.style.opacity = '0';
+                span.style.transition = 'opacity 1s';
+                span.textContent = words[wordIndex] + ' ';
+                element.appendChild(span);
+                setTimeout(() => {
+                    span.style.opacity = '1';
+                }, 100);
+                wordIndex++;
+                setTimeout(showNextWord, 300);
+            }
+        }
+
+        showNextWord();
+        element.style.opacity = '1';  // Ensure fadeText is visible
+    }
+
     // Start typing animation
     typeText('./iridium', textElement, () => {
         textElement.innerHTML += '<span class="blinking">.</span>';
@@ -56,8 +81,8 @@ document.addEventListener('DOMContentLoaded', function() {
 
         // Handle completion of Lottie animation
         animation.addEventListener('complete', () => {
-            // Show and fade in the text
-            fadeText.style.opacity = '1';
+            // Show and fade in the text word by word
+            fadeInWords('Я не могу сдержать своего презрения к вам, демонам. Вы говорите чисто, а затем взрываете больницы', fadeText);
         });
     });
 });
