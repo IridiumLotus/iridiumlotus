@@ -39,6 +39,17 @@ body {
     }
 }
 
+#playPauseButton {
+    position: fixed;
+    bottom: 20px;
+    left: 20px;
+    font-size: 24px; 
+    color: #ffffff; 
+    cursor: pointer;
+    opacity: 0;
+    transition: opacity 1s; /* Fade in transition */
+    z-index: 1000; 
+}
 .lotus-container {
     position: absolute;
     top: 50%;
@@ -65,17 +76,6 @@ body {
 #lottie-lotus {
     width: 300px;
     height: 300px;
-}
-
-#playPauseButton {
-    position: fixed;
-    bottom: 20px;
-    left: 20px;
-    font-size: 24px; 
-    color: #ffffff; 
-    cursor: pointer;
-    opacity: 0;
-    transition: opacity 1s; /* Fade in transition */
 }
 
 #fadeText {
