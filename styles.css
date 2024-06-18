@@ -1,76 +1,131 @@
 body {
-    font-family: 'Courier New', Courier, monospace;
+    margin: 0;
     background-color: black;
     color: white;
-    margin: 0;
+    font-family: 'Courier New', Courier, monospace;
     overflow: hidden;
     display: flex;
-    flex-direction: column;
-    align-items: center;
     justify-content: center;
+    align-items: center;
     height: 100vh;
+    position: relative;
 }
 
 #text {
+    font-size: 3vw;
+    white-space: nowrap;
     position: absolute;
     top: 50%;
-    transform: translateY(-50%);
-    white-space: nowrap;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    opacity: 1;
+    transition: opacity 2s, transform 2s;
 }
 
 .blinking {
-    animation: blink 1s step-end infinite;
+    animation: blink 1s infinite;
 }
 
 @keyframes blink {
-    50% {
-        opacity: 0;
-    }
+    50% { opacity: 0; }
 }
 
 #lottieContainer {
     display: none;
-    align-items: center;
     justify-content: center;
-    opacity: 0;
-    transition: opacity 2s;
+    align-items: center;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 40vw;
+    height: 40vw;
+    transition: opacity 1s ease-in-out;
 }
 
-.hidden {
+#lottie {
+    width: 100%;
+    height: 100%;
+    cursor: pointer;
+}
+
+#lotusImg {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
     opacity: 0;
-    transition: opacity 2s;
+    width: 40vw;
+    height: 40vw;
+    z-index: 1;
+    transition: opacity 1s ease-in-out;
+    cursor: default;
+}
+
+#contact-email {
+    position: absolute;
+    bottom: 20px;
+    right: 20px;
+    opacity: 0;
+    font-size: 1.5vw;
+    transition: opacity 1s ease-in-out;
+}
+
+#fadeText {
+    position: absolute;
+    top: 10%;
+    width: 80%;
+    text-align: center;
+    opacity: 0;
+    font-size: 2vw;
+    transition: opacity 2s ease-in-out;
+}
+
+#playPauseButton {
+    position: absolute;
+    bottom: 10px;
+    left: 10px;
+    opacity: 0;
+    font-size: 24px;
+    color: white;
+    cursor: pointer;
+    transition: opacity 1s;
+}
+
+/* Hover effects for specific layers */
+#petal-l1 path,
+#petal-l2 path,
+#petal-r1 path,
+#petal-r2 path,
+#petal-t path,
+#petal-b path {
+    pointer-events: none; /* Disable pointer events initially */
 }
 
 .petal-info {
     position: absolute;
-    background-color: rgba(0, 0, 0, 0.8);
     color: white;
-    padding: 5px;
+    background-color: rgba(0, 0, 0, 0.7);
+    padding: 5px 10px;
     border-radius: 5px;
-    pointer-events: none;
-    transition: opacity 0.2s;
     opacity: 0;
+    transition: opacity 0.3s ease;
+    white-space: nowrap;
 }
 
 .petal-info.visible {
     opacity: 1;
 }
 
-#contact-email {
-    position: absolute;
-    bottom: 5%;
-    transition: opacity 2s;
-}
-
-#fadeText {
-    position: absolute;
-    bottom: 10%;
-    transition: opacity 2s;
-}
-
-#playPauseButton {
-    position: absolute;
-    top: 10px;
-    right: 10px;
-    transition: opacity 2s;
+/* Responsive styles */
+@media (max-width: 768px) {
+    #text {
+        font-size: 5vw;
+    }
+    #contact-email {
+        font-size: 3vw;
+    }
+    #fadeText {
+        font-size: 4vw;
+    }
 }
