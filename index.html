@@ -7,91 +7,6 @@
     <link rel="stylesheet" href="styles.css">
     <link rel="icon" type="image/x-icon" href="favicon.ico">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bodymovin/5.7.6/lottie.min.js"></script>
-    <style>
-        body {
-            background-color: black;
-            color: white;
-            font-family: 'Courier New', Courier, monospace;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-            margin: 0;
-            overflow: hidden;
-            position: relative;
-        }
-        #text {
-            font-size: 3vw; /* Adjusted text size */
-            white-space: nowrap;
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-        }
-        .blinking {
-            animation: blink 1s infinite;
-        }
-        @keyframes blink {
-            50% { opacity: 0; }
-        }
-        #lottieContainer {
-            display: none;
-            justify-content: center;
-            align-items: center;
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            width: 40vw; /* Kept same size */
-            height: 40vw; /* Kept same size */
-            transition: opacity 1s ease-in-out;
-        }
-        #lottie {
-            width: 100%;
-            height: 100%;
-            cursor: pointer;
-        }
-        #lotusImg {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            opacity: 0;
-            width: 40vw; /* Kept same size */
-            height: 40vw; /* Kept same size */
-            z-index: 1;
-            transition: opacity 1s ease-in-out;
-            cursor: default;
-        }
-        #contact-email {
-            position: absolute;
-            bottom: 20px;
-            right: 20px;
-            opacity: 0;
-            font-size: 1.5vw; /* Adjusted text size */
-            transition: opacity 1s ease-in-out;
-        }
-        #fadeText {
-            position: absolute;
-            top: 10%;
-            width: 80%;
-            text-align: center;
-            opacity: 0;
-            font-size: 2vw;
-            transition: opacity 2s ease-in-out;
-        }
-        @media (max-width: 768px) {
-            #text {
-                font-size: 5vw; /* Larger size for smaller screens */
-            }
-            #contact-email {
-                font-size: 3vw;
-            }
-            #fadeText {
-                font-size: 4vw;
-            }
-        }
-    </style>
 </head>
 <body>
     <div id="text"></div>
@@ -101,8 +16,9 @@
     <img id="lotusImg" src="lotus_first_frame.png" alt="Lotus Flower">
     <div id="contact-email">mail@iridiumlotus.com</div>
     <audio id="backgroundMusic" src="walkin.mp3" loop></audio>
-    <div id="playPauseButton" style="opacity: 0;"> > / | | </div>
-    <div id="fadeText">Убейте всех своих демонов, ибо ваша душа достойна искупления.</div>
+    <div id="playPauseButton"> > / | | </div>
+    <div id="fadeText">Убейте всех своих демонов, ибо ваша душа достойна искупления</div>
     <script src="script.js"></script>
 </body>
 </html>
+    

@@ -5,10 +5,9 @@ document.addEventListener('DOMContentLoaded', function() {
     const lotusImg = document.getElementById('lotusImg');
     const contactEmail = document.getElementById('contact-email');
     const fadeText = document.getElementById('fadeText');
-    const backgroundMusic = document.getElementById('backgroundMusic'); // Get the audio element
-    const playPauseButton = document.getElementById('playPauseButton'); // Get the play/pause button
+    const backgroundMusic = document.getElementById('backgroundMusic');
+    const playPauseButton = document.getElementById('playPauseButton');
 
-    // Text typing animation
     function typeText(text, element, callback) {
         let index = 0;
         function type() {
@@ -17,89 +16,96 @@ document.addEventListener('DOMContentLoaded', function() {
                 index++;
                 setTimeout(type, 100);
             } else {
-                callback();
+                if (callback) callback();
             }
         }
         type();
     }
 
-    // Function to fade in words one by one
-    function fadeInWords(text, element) {
-        const words = text.split(' ');
-        element.innerHTML = '';
-        let wordIndex = 0;
-
-        function showNextWord() {
-            if (wordIndex < words.length) {
-                const span = document.createElement('span');
-                span.style.opacity = '0';
-                span.style.transition = 'opacity 1s';
-                span.textContent = words[wordIndex] + ' ';
-                element.appendChild(span);
-                setTimeout(() => {
-                    span.style.opacity = '1';
-                }, 100);
-                wordIndex++;
-                setTimeout(showNextWord, 300); // Interval between words
-            }
-        }
-
-        showNextWord();
-        element.style.opacity = '1';  // Ensure fadeText is visible
-    }
-
-    // Start typing animation
     typeText('./iridium', textElement, () => {
         textElement.innerHTML += '<span class="blinking">.</span>';
         setTimeout(() => {
             textElement.style.transition = 'top 2s';
+            textElement.style.position = 'absolute';
             textElement.style.top = 'calc(100vh - 10vh)';
             textElement.addEventListener('transitionend', () => {
-                lotusImg.style.opacity = '1'; // Fade in the lotus image
-                contactEmail.style.opacity = '1'; // Fade in the contact email
+                lotusImg.style.opacity = '1';
+                contactEmail.style.opacity = '1';
                 setTimeout(() => {
-                    lotusImg.style.cursor = 'pointer'; // Enable pointer cursor after delay
+                    lotusImg.style.cursor = 'pointer';
                     lotusImg.addEventListener('click', handleLotusClick);
-                }, 1000); // 1 second delay after the fade-in transition
+                }, 1000);
             });
-        }, 800); // Adjust the delay before moving the text to the bottom
+        }, 800);
 
-        // Load and setup Lottie animation
         const animation = lottie.loadAnimation({
             container: lottieElement,
             renderer: 'svg',
             loop: false,
             autoplay: false,
-            path: 'lotusAnimation.json?' + new Date().getTime() // Add cache buster
+            path: 'lotusAnimation.json?' + new Date().getTime()
         });
 
         function handleLotusClick() {
-            lotusImg.style.display = 'none'; // Hide the initial PNG
-            lottieContainer.style.display = 'flex'; // Show the Lottie container
-            lottieContainer.style.opacity = '1'; // Fade in the Lottie container
+            lotusImg.style.display = 'none';
+            lottieContainer.style.display = 'flex';
+            lottieContainer.style.opacity = '1';
             animation.goToAndStop(0, true);
             animation.play();
-            backgroundMusic.play(); // Play the background music
+            backgroundMusic.play();
             setTimeout(() => {
-                playPauseButton.style.opacity = '1'; // Fade in the play/pause button
-            }, 1000); // Adjust the delay as needed
+                playPauseButton.style.opacity = '1';
+            }, 1000);
         }
 
-        // Handle completion of Lottie animation
         animation.addEventListener('complete', () => {
-            // Show and fade in the text word by word
-            fadeInWords('Убейте всех своих демонов, ибо ваша душа достойна искупления', fadeText);
+            console.log("Animation completed");
+            fadeText.style.opacity = '1';
+            fadeText.textContent = 'Убейте всех своих демонов, ибо ваша душа достойна искупления ';
+            enableHoverEffects();
         });
+
+        function enableHoverEffects() {
+            const svgElements = lottieElement.querySelectorAll('g[id^="petal-"]');
+            const petalTexts = {
+                'l1': 'you',
+                'l2': 'are',
+                'r1': 'i',
+                'r2': 'am',
+                't': 'as bored as',
+                'b': 'v0id.pw'
+            };
+
+            svgElements.forEach(element => {
+                const petalId = element.id.replace('petal-', '');
+                const petalInfo = document.createElement('div');
+                petalInfo.classList.add('petal-info');
+                petalInfo.textContent = petalTexts[petalId] || 'Info about ' + petalId;
+                document.body.appendChild(petalInfo);
+
+                element.addEventListener('mouseenter', () => {
+                    element.querySelector('path').style.stroke = '#ff0000'; // Change stroke color on hover
+                    const bbox = element.getBoundingClientRect();
+                    petalInfo.style.top = `${bbox.top + window.scrollY}px`;
+                    petalInfo.style.left = `${bbox.left + window.scrollX}px`;
+                    petalInfo.classList.add('visible');
+                });
+
+                element.addEventListener('mouseleave', () => {
+                    element.querySelector('path').style.stroke = ''; // Reset stroke color
+                    petalInfo.classList.remove('visible');
+                });
+            });
+        }
     });
 
-    // Play/pause functionality
-    playPauseButton.addEventListener('click', () => {
+    playPauseButton.addEventListener('click', function() {
         if (backgroundMusic.paused) {
             backgroundMusic.play();
-            playPauseButton.textContent = ' | | '; // Update button text to 'pause'
+            playPauseButton.textContent = '| |';
         } else {
             backgroundMusic.pause();
-            playPauseButton.textContent = ' > '; // Update button text to 'play'
+            playPauseButton.textContent = ' >';
         }
     });
 });
