@@ -2,7 +2,6 @@ document.addEventListener('DOMContentLoaded', function() {
     const textElement = document.getElementById('text');
     const lottieContainer = document.getElementById('lottieContainer');
     const lottieElement = document.getElementById('lottie');
-    const lotusImg = document.getElementById('lotusImg');
     const contactEmail = document.getElementById('contact-email');
     const fadeText = document.getElementById('fadeText');
     const backgroundMusic = document.getElementById('backgroundMusic');
@@ -29,11 +28,9 @@ document.addEventListener('DOMContentLoaded', function() {
             textElement.style.position = 'absolute';
             textElement.style.top = 'calc(100vh - 10vh)';
             textElement.addEventListener('transitionend', () => {
-                lotusImg.style.opacity = '1';
                 contactEmail.style.opacity = '1';
                 setTimeout(() => {
-                    lotusImg.style.cursor = 'pointer';
-                    lotusImg.addEventListener('click', handleLotusClick);
+                    document.body.addEventListener('click', handleBodyClick);
                 }, 1000);
             });
         }, 800);
@@ -46,8 +43,7 @@ document.addEventListener('DOMContentLoaded', function() {
             path: 'lotusAnimation.json?' + new Date().getTime()
         });
 
-        function handleLotusClick() {
-            lotusImg.style.display = 'none';
+        function handleBodyClick() {
             lottieContainer.style.display = 'flex';
             lottieContainer.style.opacity = '1';
             animation.goToAndStop(0, true);

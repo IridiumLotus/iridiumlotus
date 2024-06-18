@@ -5,19 +5,17 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Iridium Lotus</title>
     <link rel="stylesheet" href="styles.css">
-    <link rel="icon" type="image/x-icon" href="favicon.ico">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/bodymovin/5.7.6/lottie.min.js"></script>
 </head>
 <body>
     <div id="text"></div>
-    <div id="lottieContainer">
+    <div id="lottieContainer" class="hidden">
         <div id="lottie"></div>
     </div>
-    <img id="lotusImg" src="lotus_first_frame.png" alt="Lotus Flower">
-    <div id="contact-email">mail@iridiumlotus.com</div>
-    <audio id="backgroundMusic" src="walkin.mp3" loop></audio>
-    <div id="playPauseButton"> > / | | </div>
-    <div id="fadeText">Убейте всех своих демонов, ибо ваша душа достойна искупления</div>
+    <div id="fadeText" class="hidden"></div>
+    <div id="contact-email" class="hidden">Contact: contact@iridiumlotus.com</div>
+    <audio id="backgroundMusic" src="backgroundMusic.mp3" loop></audio>
+    <button id="playPauseButton" class="hidden"> > </button>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bodymovin/5.7.5/lottie.min.js"></script>
     <script src="script.js"></script>
 </body>
 </html>
