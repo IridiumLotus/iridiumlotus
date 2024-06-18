@@ -75,6 +75,7 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
     function startTextAnimation() {
+        textElement.style.opacity = 1;
         typeWriter('./iridium', 0, () => {
             textElement.innerHTML = './iridium';
             textElement.style.transform = 'translate(-50%, 300%)';
