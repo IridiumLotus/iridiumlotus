@@ -74,21 +74,18 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     }
 
-    typeText('./iridium', textElement, () => {
-        textElement.innerHTML += '<span class="blinking">.</span>';
-        setTimeout(() => {
-            textElement.style.transition = 'top 2s';
-            textElement.style.position = 'absolute';
-            textElement.style.top = 'calc(100vh - 10vh)';
-            textElement.addEventListener('transitionend', () => {
-                lotusImg.style.opacity = '1';
-                contactEmail.style.opacity = '1';
-                setTimeout(() => {
-                    lotusImg.style.cursor = 'pointer';
-                    lotusImg.addEventListener('click', handleLotusClick);
-                }, 1000);
-            });
-        }, 800);
-    });
+    function startTextAnimation() {
+        textElement.style.opacity = 1;
+        typeWriter('./iridium', 0, () => {
+            textElement.innerHTML = './iridium';
+            textElement.style.transform = 'translate(-50%, 300%)';
+            textElement.style.opacity = 0;
+            setTimeout(() => {
+                lottieContainer.style.display = 'flex';
+                lottieContainer.style.opacity = 1;
+            }, 1000);
+        });
+    }
+
     startTextAnimation();
 });
