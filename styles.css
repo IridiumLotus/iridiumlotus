@@ -18,6 +18,8 @@ body {
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
+    opacity: 0;
+    transition: opacity 2s, transform 2s;
 }
 
 .blinking {
@@ -91,15 +93,13 @@ body {
 }
 
 /* Hover effects for specific layers */
-#petal-l1 path:hover,
-#petal-l2 path:hover,
-#petal-r1 path:hover,
-#petal-r2 path:hover,
-#petal-t path:hover,
-#petal-b path:hover {
-    stroke: rgb(255, 255, 255) !important;
-    stroke-width: 3px;
-    pointer-events: none;
+#petal-l1 path,
+#petal-l2 path,
+#petal-r1 path,
+#petal-r2 path,
+#petal-t path,
+#petal-b path {
+    pointer-events: none; /* Disable pointer events initially */
 }
 
 .petal-info {
