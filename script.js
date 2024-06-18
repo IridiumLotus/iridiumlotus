@@ -84,6 +84,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 document.body.appendChild(petalInfo);
 
                 element.addEventListener('mouseenter', () => {
+                    console.log('Hover over:', element.id);
                     element.querySelector('path').style.stroke = '#ff0000'; // Change stroke color on hover
                     const bbox = element.getBoundingClientRect();
                     petalInfo.style.top = `${bbox.top + window.scrollY}px`;
@@ -92,6 +93,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 });
 
                 element.addEventListener('mouseleave', () => {
+                    console.log('Mouse leave:', element.id);
                     element.querySelector('path').style.stroke = ''; // Reset stroke color
                     petalInfo.classList.remove('visible');
                 });
