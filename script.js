@@ -64,6 +64,17 @@ document.addEventListener('DOMContentLoaded', function() {
             contactEmail.style.opacity = '1'; // Show contact email after animation completes
         });
 
+        LottieInteractivity.create({
+            player: '#lottie',
+            mode: 'cursor',
+            actions: [
+                {
+                    type: 'hover',
+                    forceFlag: false
+                }
+            ]
+        });
+                
         function enableHoverEffects() {
             const svgElements = lottieElement.querySelectorAll('g[id^="petal-"]');
             const petalTexts = {
