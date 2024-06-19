@@ -85,3 +85,8 @@ body {
     font-size: 1.5vw; /* Smaller font size for play/pause button */
     cursor: pointer; /* Change cursor to pointer on hover */
 }
+
+#lottie svg g[id^="petal-"] path:hover {
+    stroke: #ffffff !important;
+    stroke-width: 3px !important;
+}
