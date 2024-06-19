@@ -82,6 +82,8 @@ document.addEventListener('DOMContentLoaded', function() {
                 petalInfo.textContent = petalTexts[petalId] || 'Info about ' + petalId;
                 document.body.appendChild(petalInfo);
 
+                console.log(`Setting up hover for: ${element.id}`);
+
                 element.addEventListener('mouseenter', () => {
                     console.log('Hover over:', element.id);
                     element.querySelector('path').style.stroke = '#ffffff'; // Change stroke color on hover to white
