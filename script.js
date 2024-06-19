@@ -2,11 +2,12 @@ document.addEventListener('DOMContentLoaded', function() {
     const textElement = document.getElementById('text');
     const lottieContainer = document.getElementById('lottieContainer');
     const lottieElement = document.getElementById('lottie');
-    const lotusImg = document.getElementById('lotusImg');
     const contactEmail = document.getElementById('contact-email');
     const fadeText = document.getElementById('fadeText');
     const backgroundMusic = document.getElementById('backgroundMusic');
     const playPauseButton = document.getElementById('playPauseButton');
+
+    let animationCompleted = false;
 
     function typeText(text, element, callback) {
         let index = 0;
@@ -29,12 +30,7 @@ document.addEventListener('DOMContentLoaded', function() {
             textElement.style.position = 'absolute';
             textElement.style.top = 'calc(100vh - 10vh)';
             textElement.addEventListener('transitionend', () => {
-                lotusImg.style.opacity = '1';
-                contactEmail.style.opacity = '1';
-                setTimeout(() => {
-                    lotusImg.style.cursor = 'pointer';
-                    lotusImg.addEventListener('click', handleLotusClick);
-                }, 1000);
+                document.body.addEventListener('click', handleBodyClick);
             });
         }, 800);
 
@@ -46,16 +42,18 @@ document.addEventListener('DOMContentLoaded', function() {
             path: 'lotusAnimation.json?' + new Date().getTime()
         });
 
-        function handleLotusClick() {
-            lotusImg.style.display = 'none';
-            lottieContainer.style.display = 'flex';
-            lottieContainer.style.opacity = '1';
-            animation.goToAndStop(0, true);
-            animation.play();
-            backgroundMusic.play();
-            setTimeout(() => {
-                playPauseButton.style.opacity = '1';
-            }, 1000);
+        function handleBodyClick() {
+            if (!animationCompleted) {
+                lottieContainer.style.display = 'flex';
+                lottieContainer.style.opacity = '1';
+                animation.goToAndStop(0, true);
+                animation.play();
+                backgroundMusic.play();
+                setTimeout(() => {
+                    playPauseButton.style.opacity = '1';
+                }, 1000);
+                animationCompleted = true;
+            }
         }
 
         animation.addEventListener('complete', () => {
@@ -63,6 +61,7 @@ document.addEventListener('DOMContentLoaded', function() {
             fadeText.style.opacity = '1';
             fadeText.textContent = 'Убейте всех своих демонов, ибо ваша душа достойна искупления ';
             enableHoverEffects();
+            contactEmail.style.opacity = '1'; // Show contact email after animation completes
         });
 
         function enableHoverEffects() {
@@ -85,7 +84,8 @@ document.addEventListener('DOMContentLoaded', function() {
 
                 element.addEventListener('mouseenter', () => {
                     console.log('Hover over:', element.id);
-                    element.querySelector('path').style.stroke = '#ff0000'; // Change stroke color on hover
+                    element.querySelector('path').style.stroke = '#ffffff'; // Change stroke color on hover to white
+                    element.querySelector('path').style.strokeWidth = '3px'; // Make stroke thicker
                     const bbox = element.getBoundingClientRect();
                     petalInfo.style.top = `${bbox.top + window.scrollY}px`;
                     petalInfo.style.left = `${bbox.left + window.scrollX}px`;
@@ -95,6 +95,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 element.addEventListener('mouseleave', () => {
                     console.log('Mouse leave:', element.id);
                     element.querySelector('path').style.stroke = ''; // Reset stroke color
+                    element.querySelector('path').style.strokeWidth = ''; // Reset stroke width
                     petalInfo.classList.remove('visible');
                 });
             });
@@ -110,4 +111,6 @@ document.addEventListener('DOMContentLoaded', function() {
             playPauseButton.textContent = ' >';
         }
     });
+
+    playPauseButton.style.cursor = 'pointer'; // Change cursor to pointer on hover
 });

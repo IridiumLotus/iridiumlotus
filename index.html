@@ -7,17 +7,21 @@
     <link rel="stylesheet" href="styles.css">
     <link rel="icon" type="image/x-icon" href="favicon.ico">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bodymovin/5.7.6/lottie.min.js"></script>
+
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+    <link rel="manifest" href="/site.webmanifest">
 </head>
 <body>
     <div id="text"></div>
-    <div id="lottieContainer">
+    <div id="lottieContainer" class="hidden">
         <div id="lottie"></div>
     </div>
-    <img id="lotusImg" src="lotus_first_frame.png" alt="Lotus Flower">
-    <div id="contact-email">mail@iridiumlotus.com</div>
+    <div id="fadeText" class="hidden"></div>
+    <div id="contact-email" class="hidden">mail@iridiumlotus.com</div>
     <audio id="backgroundMusic" src="walkin.mp3" loop></audio>
-    <div id="playPauseButton"> > / | | </div>
-    <div id="fadeText">Убейте всех своих демонов, ибо ваша душа достойна искупления</div>
+    <div id="playPauseButton" class="hidden"> > / | | </div>
     <script src="script.js"></script>
 </body>
 </html>
