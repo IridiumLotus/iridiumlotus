@@ -6,6 +6,7 @@ document.addEventListener('DOMContentLoaded', function() {
     const fadeText = document.getElementById('fadeText');
     const backgroundMusic = document.getElementById('backgroundMusic');
     const playPauseButton = document.getElementById('playPauseButton');
+    const customButton = document.querySelector('.custom-button'); // The button
 
     let animationCompleted = false;
 
@@ -39,7 +40,7 @@ document.addEventListener('DOMContentLoaded', function() {
             renderer: 'svg',
             loop: false,
             autoplay: false,
-            path: 'lotusAnimation.json?' + new Date().getTime()
+            path: 'lotusAnimation.json?' + new Date().getTime() // Add cache buster
         });
 
         function handleBodyClick() {
@@ -58,17 +59,17 @@ document.addEventListener('DOMContentLoaded', function() {
 
         animation.addEventListener('complete', () => {
             console.log("Animation completed");
+
             fadeText.style.opacity = '1';
             fadeText.textContent = 'Убейте всех своих демонов, ибо ваша душа достойна искупления ';
-            
-            enableHoverEffects();
-            
-            contactEmail.style.opacity = '1'; 
-            const customButton = document.getElementById('customButton');
-            customButton.classList.remove('hidden');
-            customButton.classList.add('visible'); 
+
+            contactEmail.style.opacity = '1';
+
+            customButton.style.opacity = '1';
+
+            enableHoverEffects(); 
         });
-        
+
         function enableHoverEffects() {
             const svgElements = lottieElement.querySelectorAll('g[id^="petal-"]');
             const petalTexts = {
@@ -87,10 +88,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 petalInfo.textContent = petalTexts[petalId] || 'Info about ' + petalId;
                 document.body.appendChild(petalInfo);
 
-                console.log(`Setting up hover for: ${element.id}`);
-
                 element.addEventListener('mouseenter', () => {
-                    console.log('Hover over:', element.id);
                     element.querySelector('path').style.stroke = '#ffffff'; 
                     element.querySelector('path').style.strokeWidth = '3px'; 
                     const bbox = element.getBoundingClientRect();
@@ -100,7 +98,6 @@ document.addEventListener('DOMContentLoaded', function() {
                 });
 
                 element.addEventListener('mouseleave', () => {
-                    console.log('Mouse leave:', element.id);
                     element.querySelector('path').style.stroke = ''; 
                     element.querySelector('path').style.strokeWidth = ''; 
                     petalInfo.classList.remove('visible');
