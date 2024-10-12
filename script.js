@@ -63,10 +63,10 @@ document.addEventListener('DOMContentLoaded', function() {
             
             enableHoverEffects();
             
-            contactEmail.style.opacity = '1'; // Show contact email
+            contactEmail.style.opacity = '1'; 
             const customButton = document.getElementById('customButton');
             customButton.classList.remove('hidden');
-            customButton.classList.add('visible'); // Show the button with fade-in effect
+            customButton.classList.add('visible'); 
         });
         
         function enableHoverEffects() {
@@ -91,8 +91,8 @@ document.addEventListener('DOMContentLoaded', function() {
 
                 element.addEventListener('mouseenter', () => {
                     console.log('Hover over:', element.id);
-                    element.querySelector('path').style.stroke = '#ffffff'; // Change stroke color on hover to white
-                    element.querySelector('path').style.strokeWidth = '3px'; // Make stroke thicker
+                    element.querySelector('path').style.stroke = '#ffffff'; 
+                    element.querySelector('path').style.strokeWidth = '3px'; 
                     const bbox = element.getBoundingClientRect();
                     petalInfo.style.top = `${bbox.top + window.scrollY}px`;
                     petalInfo.style.left = `${bbox.left + window.scrollX}px`;
@@ -101,8 +101,8 @@ document.addEventListener('DOMContentLoaded', function() {
 
                 element.addEventListener('mouseleave', () => {
                     console.log('Mouse leave:', element.id);
-                    element.querySelector('path').style.stroke = ''; // Reset stroke color
-                    element.querySelector('path').style.strokeWidth = ''; // Reset stroke width
+                    element.querySelector('path').style.stroke = ''; 
+                    element.querySelector('path').style.strokeWidth = ''; 
                     petalInfo.classList.remove('visible');
                 });
             });
@@ -119,5 +119,5 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     });
 
-    playPauseButton.style.cursor = 'pointer'; // Change cursor to pointer on hover
+    playPauseButton.style.cursor = 'pointer';
 });

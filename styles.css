@@ -16,7 +16,7 @@ body {
     top: 50%;
     transform: translateY(-50%);
     white-space: nowrap;
-    font-size: 3vw; /* Larger text size for './iridium' */
+    font-size: 3vw; 
 }
 
 .blinking {
@@ -35,8 +35,8 @@ body {
     justify-content: center;
     opacity: 0;
     transition: opacity 2s;
-    width: 40vw; /* Slightly smaller Lottie size */
-    height: 40vw; /* Slightly smaller Lottie size */
+    width: 40vw; 
+    height: 40vw;
 }
 
 .hidden {
@@ -53,7 +53,7 @@ body {
     pointer-events: none;
     transition: opacity 0.2s;
     opacity: 0;
-    font-size: 2vw; /* Adjust font size */
+    font-size: 2vw; 
 }
 
 .petal-info.visible {
@@ -63,27 +63,27 @@ body {
 #contact-email {
     position: absolute;
     bottom: 5%;
-    right: 2%; /* Adjusted to bottom right */
-    font-size: 1.5vw; /* Smaller font size for contact email */
+    right: 2%; 
+    font-size: 1.5vw; 
 }
 
 #fadeText {
     position: absolute;
-    top: 5%; /* Positioned above Lottie animation */
+    top: 5%; 
     left: 50%;
     transform: translateX(-50%);
     transition: opacity 2s;
-    font-size: 1.8vw; /* Adjusted font size */
-    white-space: nowrap; /* Prevent text from wrapping to the next line */
+    font-size: 1.8vw;
+    white-space: nowrap; 
 }
 
 #playPauseButton {
     position: absolute;
-    bottom: 1vw; /* Positioned at bottom left */
-    left: 1vw; /* Positioned at bottom left */
+    bottom: 1vw; 
+    left: 1vw; 
     transition: opacity 2s;
-    font-size: 1.5vw; /* Smaller font size for play/pause button */
-    cursor: pointer; /* Change cursor to pointer on hover */
+    font-size: 1.5vw;
+    cursor: pointer; 
 }
 
 #lottie svg g[id^="petal-"] path:hover {
