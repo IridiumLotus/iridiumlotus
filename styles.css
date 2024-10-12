@@ -102,10 +102,9 @@ body {
     font-family: 'Courier New', Courier, monospace;
     transition: background-color 0.3s ease, color 0.3s ease;
     opacity: 0;
-    position: left;
-    bottom: 60px;
-    left: 90%;
-    transform: translateX(-50%);
+    position: absolute;
+    bottom: 60px; /* Distance from bottom */
+    left: 20px; /* Distance from left corner */
     cursor: pointer;
 }
 
