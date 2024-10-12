@@ -60,8 +60,13 @@ document.addEventListener('DOMContentLoaded', function() {
             console.log("Animation completed");
             fadeText.style.opacity = '1';
             fadeText.textContent = 'Убейте всех своих демонов, ибо ваша душа достойна искупления ';
+            
             enableHoverEffects();
-            contactEmail.style.opacity = '1'; // Show contact email after animation completes
+            
+            contactEmail.style.opacity = '1'; // Show contact email
+            const customButton = document.getElementById('customButton');
+            customButton.classList.remove('hidden');
+            customButton.classList.add('visible'); // Show the button with fade-in effect
         });
         
         function enableHoverEffects() {

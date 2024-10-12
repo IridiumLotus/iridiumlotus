@@ -90,3 +90,42 @@ body {
     stroke: #ffffff !important;
     stroke-width: 3px !important;
 }
+
+.custom-button {
+    display: inline-block;
+    padding: 10px 20px;
+    color: white;
+    background-color: transparent;
+    border: 2px solid white;
+    text-decoration: none;
+    font-size: 1.5vw;
+    font-family: 'Courier New', Courier, monospace;
+    transition: background-color 0.3s ease, color 0.3s ease;
+    opacity: 0;
+    position: absolute;
+    bottom: 60px;
+    left: 50%;
+    transform: translateX(-50%);
+    cursor: pointer;
+}
+
+.custom-button:hover {
+    background-color: white;
+    color: black;
+}
+
+.custom-button:active {
+    transform: scale(0.95);
+    transition: transform 0.1s ease;
+}
+
+.hidden {
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 1s ease;
+}
+
+.visible {
+    opacity: 1;
+    visibility: visible;
+}
