@@ -104,8 +104,8 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 
     playPauseButton.addEventListener('click', function() {
-        const playIcon = document.querySelector('#playPauseButton .fa-play');
-        const pauseIcon = document.querySelector('#playPauseButton .fa-pause');
+        const playIcon = document.querySelector('#playPauseButton .circle-play');
+        const pauseIcon = document.querySelector('#playPauseButton .circle-pause');
         
         if (backgroundMusic.paused) {
             backgroundMusic.play();
