@@ -6,7 +6,7 @@ document.addEventListener('DOMContentLoaded', function() {
     const fadeText = document.getElementById('fadeText');
     const backgroundMusic = document.getElementById('backgroundMusic');
     const playPauseButton = document.getElementById('playPauseButton');
-    const customButton = document.querySelector('.custom-button'); // The button
+    const customButton = document.querySelector('.custom-button');
 
     let animationCompleted = false;
 
@@ -40,7 +40,7 @@ document.addEventListener('DOMContentLoaded', function() {
             renderer: 'svg',
             loop: false,
             autoplay: false,
-            path: 'lotusAnimation.json?' + new Date().getTime() // Add cache buster
+            path: 'lotusAnimation.json?' + new Date().getTime() 
         });
 
         function handleBodyClick() {
@@ -52,6 +52,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 backgroundMusic.play();
                 setTimeout(() => {
                     playPauseButton.style.opacity = '1';
+                    customButton.style.opacity = '1'; 
                 }, 1000);
                 animationCompleted = true;
             }
@@ -59,15 +60,11 @@ document.addEventListener('DOMContentLoaded', function() {
 
         animation.addEventListener('complete', () => {
             console.log("Animation completed");
-
             fadeText.style.opacity = '1';
             fadeText.textContent = 'Убейте всех своих демонов, ибо ваша душа достойна искупления ';
-
             contactEmail.style.opacity = '1';
-
-            customButton.style.opacity = '1';
-
-            enableHoverEffects(); 
+            customButton.style.opacity = '1'; 
+            enableHoverEffects();
         });
 
         function enableHoverEffects() {
@@ -116,5 +113,5 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     });
 
-    playPauseButton.style.cursor = 'pointer';
+    playPauseButton.style.cursor = 'pointer'; 
 });
