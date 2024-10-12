@@ -86,6 +86,17 @@ body {
     cursor: pointer; 
 }
 
+#playPauseButton:hover {
+    background-color: white;
+    color: black;
+}
+
+#playPauseButton:active {
+    transform: scale(0.95);
+    transition: transform 0.1s ease;
+}
+
+
 #lottie svg g[id^="petal-"] path:hover {
     stroke: #ffffff !important;
     stroke-width: 3px !important;
@@ -101,41 +112,20 @@ body {
     font-size: 1.5vw;
     font-family: 'Courier New', Courier, monospace;
     transition: background-color 0.3s ease, color 0.3s ease, opacity 1s ease;
-    opacity: 0; 
+    opacity: 0; /* Start hidden */
     position: absolute;
     bottom: 60px;
     left: 20px;
-    z-index: 10;
+    z-index: 10; /* Ensure button is above other elements */
     cursor: pointer;
 }
 
-.custom-button:hover {
+.custom-button:hover, #playPauseButton:hover {
     background-color: white;
     color: black;
 }
 
-.custom-button:active {
+.custom-button:active, #playPauseButton:active {
     transform: scale(0.95);
     transition: transform 0.1s ease;
-}
-
-#lottieContainer,
-#contact-email {
-    opacity: 0; 
-    transition: opacity 1s ease;
-    z-index: 5;
-}
-
-#fadeText {
-    opacity: 0;
-    transition: opacity 1s ease;
-    z-index: 5; 
-
-.visible {
-    opacity: 1;
-}
-
-.custom-button {
-    cursor: pointer;
-}
 }
