@@ -104,14 +104,19 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 
     playPauseButton.addEventListener('click', function() {
+        const playIcon = document.querySelector('#playPauseButton .fa-play');
+        const pauseIcon = document.querySelector('#playPauseButton .fa-pause');
+        
         if (backgroundMusic.paused) {
             backgroundMusic.play();
-            playPauseButton.textContent = '| |';
+            playIcon.style.display = 'none';
+            pauseIcon.style.display = 'inline-block';
         } else {
             backgroundMusic.pause();
-            playPauseButton.textContent = ' >';
+            playIcon.style.display = 'inline-block';
+            pauseIcon.style.display = 'none';
         }
-    });
+    });    
 
     playPauseButton.style.cursor = 'pointer'; 
 });
